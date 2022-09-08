@@ -1,0 +1,44 @@
+body {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(
+      0deg,
+      rgba(250, 71, 176, 0.2),
+      rgba(88, 0, 52, 0.2)
+    ),
+    url("../src/Assets/img/restaurant.webp");
+
+  background-color: rgba(0, 0, 0, 0.329);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow-y: scroll;
+  font-family: "Raleway", sans-serif;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: rgb(65, 65, 65);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(131, 131, 131);
+  outline: none;
+}
+
+p {
+  margin-top: initial;
+  margin-bottom: initial;
+}
+
+a {
+  color: #fff !important;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

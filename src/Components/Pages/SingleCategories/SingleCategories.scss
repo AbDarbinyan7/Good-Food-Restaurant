@@ -1,0 +1,56 @@
+@import "Components/Assets/SCSS.scss/Variable";
+
+.sing__categories {
+  height: 100vh;
+  color: white;
+
+  .single__cat__title {
+    text-align: center;
+    color: $color_lightgreen;
+    font-weight: 300;
+    font-size: 40px;
+    margin: 30px 0;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .sing__cat__img__text {
+    padding: 0 30px;
+    display: flex;
+
+    .img {
+      margin-right: 25px;
+    }
+    .sing__cat__text {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 30px;
+    }
+  }
+  .meal__ings__section {
+    padding-bottom: 50px;
+
+    ul {
+      background: rgba(255, 255, 255, 0.2);
+      width: 60%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      font-size: 40px;
+      font-weight: 300;
+      color: $color_lightgreen;
+
+      li {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .video__href {
+    color: $color_lightgreen;
+
+    &:hover {
+      color: white;
+    }
+  }
+}

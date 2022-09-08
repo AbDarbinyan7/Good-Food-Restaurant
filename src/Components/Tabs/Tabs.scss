@@ -1,0 +1,272 @@
+@import "~Assets/SCSS/Variable";
+
+.full__modal {
+  height: 100%;
+}
+
+.change_display {
+  display: block;
+}
+
+.btn__styles {
+  font-size: 16px;
+  font-weight: initial;
+  padding: 0 10px;
+  height: 36px;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  text-decoration: none !important  ;
+}
+
+.login__btn {
+  background: $color_lightgreen;
+  &:hover {
+    box-shadow: 0px 0px 10px 0px $color_lightgreen;
+  }
+}
+
+.signin__btn {
+  background: rgb(4, 153, 240);
+  &:hover {
+    box-shadow: 0px 0px 10px 0px rgb(4, 153, 240);
+  }
+}
+
+.add_buy__btns {
+  display: none;
+  gap: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .add_btn {
+    background: transparent;
+    color: yellow;
+    border: 2px dashed yellow;
+    white-space: nowrap;
+
+    &:hover {
+      color: white;
+      border: 2px dashed rgb(255, 255, 255);
+    }
+  }
+  .buy_btn {
+    white-space: nowrap;
+    color: black;
+  }
+}
+
+.tabs__container {
+  height: 100vh;
+
+  .tabs__section {
+    display: flex;
+    background: rgba(236, 235, 235, 0.3);
+    justify-content: center;
+    margin-bottom: 20px;
+
+    .tabs {
+      position: relative;
+      display: flex;
+      font-size: 20px;
+      font-weight: 500;
+      color: white;
+      transition: 0.5s;
+
+      .scroll__line {
+        position: absolute;
+        height: 5px;
+        background: $header_color;
+        transition: 0.7s;
+      }
+
+      .tab {
+        padding: 15px 30px;
+        display: flex;
+        font-weight: 300;
+        cursor: pointer;
+
+        &.active {
+          color: $header_color;
+
+          &:hover {
+            background-color: transparent;
+
+            .tab__title {
+              color: #000;
+            }
+          }
+        }
+
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+  }
+
+  .log_in_section {
+    display: flex;
+    padding: 10px 0;
+    justify-content: space-between;
+    align-items: center;
+
+    .log_in_left_side {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+    }
+
+    .btn_group_box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-right: 20px;
+
+      .cart__btn {
+        position: relative;
+        border: 2px solid white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .cart_quantity {
+          position: absolute;
+          font-family: sans-serif;
+          bottom: -6px;
+          right: -6px;
+          padding: 0px 3px;
+          color: #000;
+          font-size: 11px;
+          width: 17px;
+          height: 17px;
+          border-radius: 50%;
+          background-color: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+
+    .logo__box {
+      height: 60px;
+    }
+
+    .logo {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .loader {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 200px 0;
+  }
+  .container {
+    width: 1000px;
+    margin: 0 auto;
+  }
+
+  .tabs__meals__Section {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    color: white;
+    padding-bottom: 100px;
+
+    .meal {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: center;
+      color: white;
+      border-radius: 10px;
+      overflow: hidden;
+
+      .price_box {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 0px 5px;
+        font-weight: bold;
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        background: rgba(48, 48, 48, 0.5);
+        z-index: 5656;
+        transition: 0.3s;
+      }
+
+      .title__modal {
+        width: 100%;
+        max-height: 50px;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: end;
+        z-index: 2;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 5px 0;
+        transition: 0.3s all;
+
+        .meal__title {
+          font-size: 13px;
+          padding: 0 5px;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 100%;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        .title__modal {
+          max-height: 100%;
+          height: 100%;
+        }
+
+        .add_buy__btns {
+          display: grid;
+        }
+        .price_box {
+          background: transparent;
+        }
+      }
+
+      .meal__img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .read__description__link {
+    color: white;
+    margin-left: 20px;
+    font-size: 18px;
+
+    &:hover {
+      color: $color_lightgreen;
+    }
+  }
+}
