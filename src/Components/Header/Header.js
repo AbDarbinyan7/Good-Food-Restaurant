@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { useContext,useState } from "react";
+
 
 import logo from "Assets/img/goodfood.png";
 import "Components/Header/header.scss";
-import { useContext } from "react";
+import { CartContext } from "Routes/AppRoutes";
 
 const LINKS = [
   { label: "About us", src: "#" },
@@ -12,12 +14,22 @@ const LINKS = [
 ];
 
 function Header() {
+  const { cartContext, setCartContext } = useContext(CartContext);
+function onProductCount() {
+  let counter = 0
+   cartContext.map((product)=>{
+    counter = product.quantity + counter
+    
+  })
+  return  counter
+}
+
   return (
     <div className="log_in_section container">
       <div className="log_in_left_side">
-        <div className="logo__box">
+        <Link to={"/"} className="logo__box">
           <img src={logo} className="logo" />
-        </div>
+        </Link>
         <nav>
           {LINKS.map((link, i) => (
             <a key={i} href={link.src}>
@@ -31,7 +43,7 @@ function Header() {
         <button className="signin__btn btn__styles">Sign In</button>
         <Link to="/cart" className="cart__btn btn__styles">
           <div className="cart_quantity">
-            <p>{}</p>
+            <p>{onProductCount()}</p>
           </div>
           <i className="fa-solid fa-cart-shopping"></i>
         </Link>

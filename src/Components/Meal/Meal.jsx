@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { TabContext } from "Routes/AppRoutes";
 import { CartContext } from "Routes/AppRoutes";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { CART, CATEGORIES } from "Routes/RoutePaths/RoutePaths";
 import "Components/Meal/Meal.scss";
@@ -55,7 +55,7 @@ function MealItem({ selectedPath, meal }) {
               onClick={(e) => {
                 stopPropagation(e);
                 navigate(CART);
-                setCartContext([...cartContext, meal]);
+                setParams(meal);
               }}
               className="buy_btn login__btn btn__styles"
             >

@@ -14,6 +14,7 @@ import {HOME, CATEGORIES, HOMECATEGORIESMEAL, NOTFOUND, CART} from "Routes/Route
 export const TabContext = createContext(null)
 export const MealsArrContext = createContext([]);
 export const CartContext = createContext([]);
+export const QuantityContext = createContext(0);
 
 function AppRoutes (){ 
 	const [ tabContext, setTabContext ] = useState([]);
@@ -23,21 +24,21 @@ return (
   <>
     <TabContext.Provider value={{ tabContext, setTabContext }}>
       <CartContext.Provider value={{ cartContext, setCartContext }}>
-        <Header />
-        <div className="main__container">
-          <Routes>
-            <Route path={HOME} element={<Tabs />} />
-            <Route path={CATEGORIES} element={<Tabs />} />
-            <Route path={CATEGORIES + "/:selectedPath"} element={<Tabs />} />
-            <Route
-              path={CATEGORIES + "/:selectedPath" + "/:mealPath"}
-              element={<SingleCategories />}
-            />
-            <Route path={CART} element={<CartPage />} />
-            <Route path={NOTFOUND} element={<ErrorPage />} />
-          </Routes>
-        </div>
-        <Footer />
+          <Header />
+          <div className="main__container">
+            <Routes>
+              <Route path={HOME} element={<Tabs />} />
+              <Route path={CATEGORIES} element={<Tabs />} />
+              <Route path={CATEGORIES + "/:selectedPath"} element={<Tabs />} />
+              <Route
+                path={CATEGORIES + "/:selectedPath" + "/:mealPath"}
+                element={<SingleCategories />}
+              />
+              <Route path={CART} element={<CartPage />} />
+              <Route path={NOTFOUND} element={<ErrorPage />} />
+            </Routes>
+          </div>
+          <Footer />
       </CartContext.Provider>
     </TabContext.Provider>
   </>
