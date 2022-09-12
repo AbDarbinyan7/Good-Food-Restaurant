@@ -1,4 +1,4 @@
-import AppRoutes from 'Components/Routes/AppRoutes';
+import AppRoutes from 'Routes/AppRoutes';
 
 import './App.css';
 

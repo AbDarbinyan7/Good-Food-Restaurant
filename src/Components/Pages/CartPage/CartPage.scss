@@ -1,0 +1,70 @@
+@import "Assets/SCSS/Variable.scss";
+
+.cart__section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  &__cart_meal {
+    padding: 10px;
+    background: rgba(218, 218, 218, 0.3);
+    display: flex;
+    border: 2px solid $color_lightgreen;
+    justify-content: space-between;
+
+    &__img {
+      height: 50px;
+      max-width: 50px;
+
+      & img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__title-price {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      color: white;
+
+      &__title {
+        margin-right: 50px;
+      }
+
+      &__right-side {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        &p {
+          font-size: 20px;
+        }
+
+        &__minus-plus {
+          font-weight: bold;
+          width: 20px;
+          height: 20px;
+          background: aliceblue;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: rgb(255, 255, 255);
+          background: $color_lightgreen;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+
+          &:active {
+            background: white;
+            color: black;
+          }
+        }
+      }
+    }
+  }
+}

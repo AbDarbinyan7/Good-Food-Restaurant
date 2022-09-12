@@ -1,0 +1,86 @@
+.tabs__meals__Section {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  color: white;
+  padding-bottom: 100px;
+  min-height: 100vh;
+
+  @media screen and (max-width: 990px) {
+    & {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .meal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .price_box {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 0px 5px;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+      font-size: 18px;
+      background: rgba(48, 48, 48, 0.5);
+      z-index: 5656;
+      transition: 0.3s;
+    }
+
+    .title__modal {
+      width: 100%;
+      max-height: 50px;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: end;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 5px 0;
+      transition: 0.3s all;
+
+      .meal__title {
+        font-size: 13px;
+        padding: 0 5px;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      .title__modal {
+        max-height: 100%;
+        height: 100%;
+      }
+
+      .add_buy__btns {
+        display: grid;
+      }
+      .price_box {
+        background: transparent;
+      }
+    }
+
+    .meal__img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

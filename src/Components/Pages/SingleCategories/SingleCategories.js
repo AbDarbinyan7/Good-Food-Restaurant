@@ -8,9 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import 'Components/Pages/SingleCategories/SingleCategories.scss';
-import { getOrSetLocalStorageItem } from "Components/Helper/index.js";
-import {CATEGORIES} from "Components/Routes/RoutePaths/RoutePaths"
-import { TabContext } from "Components/Routes/AppRoutes";
+import { getOrSetLocalStorageItem } from "Helper/index.js";
+import {CATEGORIES} from "Routes/RoutePaths/RoutePaths"
+import { TabContext } from "Routes/AppRoutes";
 
 function SingleCategories() {
   const { tabContext, setTabContext } = useContext(TabContext)
@@ -42,8 +42,6 @@ function SingleCategories() {
       .then(res => {
         if (res.data.meals) {
           setMeal(res.data.meals[0]);
-          console.log(res.data.meals[0].strYoutube);
-
         }else{
           navigate(CATEGORIES)
         }

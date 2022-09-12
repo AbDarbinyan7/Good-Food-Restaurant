@@ -1,29 +1,26 @@
 import React, { useRef, useEffect, useState, useContext, Fragment } from "react";
 import { useParams  } from "react-router";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";  
 import { useNavigate } from "react-router";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-import { Triangle } from "react-loader-spinner";
-
-import  logo  from "Assets/img/goodfood.png";
-
-import {TabContext} from "Components/Routes/AppRoutes"
-import { generateUniqueId} from "Components/Helper/index"
-import { CATEGORIES } from "Components/Routes/RoutePaths/RoutePaths"
+import { TabContext, setCartContext } from "Routes/AppRoutes";
+import { generateUniqueId} from "Helper/index"
+import { CATEGORIES } from "Routes/RoutePaths/RoutePaths"
 
 import 'Components/Tabs/Tabs.scss'; 
-const LINKS = [
-  {label:"About us", src:"#"},
-  {label:"News", src:"#"},
-  {label:"Work with us", src:"#"},
-  {label:"Cooperation", src:"#"},
-];
+
+import  TriangleLoader  from "Components/TriangleLoader/TriangleLoader";
+import  Home from "Components/Home/Home";
+
+
+
 
 function Tabs() {
   const {tabContext, setTabContext } = useContext(TabContext)
+
 
   const scrollLineRef = useRef(null);
   const tabsRef = useRef([]);
@@ -85,6 +82,7 @@ function Tabs() {
   function onAddPrice(data) {
     const newMealsArr = data.map((meal) => {
       meal.price = Math.ceil(Math.random() * 15)+3;
+      meal.quantity = 1
       return meal
     })
     setCurrectTabData(newMealsArr)
@@ -159,30 +157,7 @@ function Tabs() {
   }
  
   return (
-    <div className="tabs__container">
-      <div className="log_in_section container">
-        <div className="log_in_left_side">
-          <div className="logo__box">
-            <img src={logo} className="logo" />
-          </div>
-          <nav>
-            {LINKS.map((link,i) => (
-              <a key={i} href={link.src}>{link.label}</a>
-            ))}
-          </nav>
-        </div>
-
-        <div className="btn_group_box">
-          <button className="login__btn btn__styles">Log In</button>
-          <button className="signin__btn btn__styles">Sign In</button>
-          <Link to="/cart" className="cart__btn btn__styles">
-            <div className="cart_quantity">
-              <p>0</p>
-            </div>
-            <i className="fa-solid fa-cart-shopping"></i>
-          </Link>
-        </div>
-      </div>
+    <>
       <div className="tabs__section">
         <div className="tabs">
           {tabs &&
@@ -210,52 +185,11 @@ function Tabs() {
         </div>
       </div>
       {loader ? (
-        <div className="loader">
-          <Triangle
-            height="80"
-            width="80"
-            color="#4fa94d"
-            ariaLabel="triangle-loading"
-            wrapperStyle={{}}
-            wrapperClassName=""
-            visible={true}
-          />
-        </div>
+        <TriangleLoader />
       ) : (
-        <div className="tabs__meals__Section container">
-          <>
-            {currectTabData &&
-              Array.isArray(currectTabData) &&
-              currectTabData.map((meal, index) => {
-                return (
-                  <Link
-                    key={index.toString()}
-                    to={`${CATEGORIES}/${selectedPath}/${meal.idMeal}`}
-                  >
-                    <div className="meal">
-                      <div className="price_box">
-                        <p className="price">{meal.price}.00 USD</p>
-                      </div>
-                      <div className="title__modal">
-                        <div className="add_buy__btns">
-                          <button className="buy_btn login__btn btn__styles">
-                            Buy Now
-                          </button>
-                          <button className="add_btn  btn__styles">
-                            Add To Cart
-                          </button>
-                        </div>
-                        <p className="meal__title"> {meal.strMeal}</p>
-                      </div>
-                      <img src={meal.strMealThumb} className="meal__img"></img>
-                    </div>
-                  </Link>
-                );
-              })}
-          </>
-        </div>
+        <Home currectTabData={currectTabData} selectedPath={selectedPath} />
       )}
-    </div>
+    </>
   );
 }
 export default Tabs
