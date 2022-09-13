@@ -1,0 +1,45 @@
+@import "~Assets/SCSS/Variable";
+
+.search_bar {
+  margin-bottom: 10px;
+  display: flex;
+
+  &__box {
+    width: 50px;
+    background: rgba(0, 0, 0, 0.4);
+    transition: 0.3s all;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    min-height: 50px;
+
+    &.opened {
+      background: linear-gradient(0deg, black red);
+      width: 300px;
+      .search_bar__box__label__input {
+        display: block;
+        width: 160px;
+      }
+    }
+
+    &__label {
+      color: $color_lightgreen;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      width: 100%;
+
+      i {
+        cursor: pointer;
+      }
+
+      &__input {
+        padding-left: 20px;
+        background: transparent;
+        color: white;
+        outline: none;
+        border: none;
+        display: none;
+      }
+    }
+  }
+}

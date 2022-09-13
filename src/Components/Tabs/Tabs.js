@@ -6,7 +6,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-import { TabContext, setCartContext } from "Routes/AppRoutes";
+import { TabContext, MealsContext } from "Routes/AppRoutes";
 import { generateUniqueId} from "Helper/index"
 import { CATEGORIES } from "Routes/RoutePaths/RoutePaths"
 
@@ -20,7 +20,7 @@ import  Home from "Components/Home/Home";
 
 function Tabs() {
   const {tabContext, setTabContext } = useContext(TabContext)
-
+  const { mealsContext, setMealsContext } = useContext(MealsContext);
 
   const scrollLineRef = useRef(null);
   const tabsRef = useRef([]);
@@ -86,6 +86,7 @@ function Tabs() {
       return meal
     })
     setCurrectTabData(newMealsArr)
+    setMealsContext(newMealsArr);
   }
 
   function onCallForCurrectTabData(tabName) {

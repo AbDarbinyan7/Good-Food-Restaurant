@@ -44,6 +44,10 @@
       color: white;
       border: 2px dashed rgb(255, 255, 255);
     }
+    &:active {
+      color: yellow;
+      border: 2px dashed yellow;
+    }
   }
   .buy_btn {
     white-space: nowrap;
