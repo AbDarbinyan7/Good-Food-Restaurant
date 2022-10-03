@@ -5,6 +5,7 @@ import {
   CartContext,
   ModalContext,
   modalContextDefault,
+  MealsContext,
 } from "Routes/AppRoutes";
 import "Components/Pages/CartPage/CartPage.scss";
 import BasicModal from "../BasicModal/BasicModal";
@@ -13,14 +14,14 @@ import { HOME } from "Routes/RoutePaths/RoutePaths";
 const CartPage = () => {
   const { cartContext, setCartContext } = useContext(CartContext);
   const { modalContext, setModalContext } = useContext(ModalContext);
+  const { mealsContext, setMealsContext } = useContext(MealsContext);
 
   const navigatePage = useNavigate();
 
   useEffect(() => {
     if (!cartContext.length) {
       navigatePage(HOME);
-    }else if(cartContext.length){
-      
+    } else if (cartContext.length) {
     }
   }, [cartContext]);
 
@@ -30,14 +31,25 @@ const CartPage = () => {
 
     newCartList = cartContext.map((product) => {
       if (product.idMeal === meal.idMeal) {
-        if (product.quantity === 1 && isMinus) {
+        if (product.quantityInCart === 1 && isMinus) {
           showModalContent = meal;
           return product;
         }
 
-        product.quantity = isMinus
-          ? product.quantity - 1
-          : product.quantity + 1;
+        const isProductExistInMeals = mealsContext.find((el) => {
+          return el.idMeal === meal.idMeal;
+        });
+
+        if (isProductExistInMeals) {
+          if (
+            isProductExistInMeals.quantity !== product.quantityInCart &&
+            !isMinus
+          ) {
+            product.quantityInCart = product.quantityInCart + 1;
+          } else if (isMinus) {
+            product.quantityInCart = product.quantityInCart - 1;
+          }
+        }
       }
       return product;
     });
@@ -76,7 +88,7 @@ const CartPage = () => {
 
     if (cartContext.length > 0) {
       totalPrice = cartContext.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue.price * currentValue.quantity;
+        return accumulator + currentValue.price * currentValue.quantityInCart;
       }, initialValue);
     }
 
@@ -111,7 +123,7 @@ const CartPage = () => {
                       >
                         <i className="fa-solid fa-minus"></i>
                       </div>
-                      <p>{meal?.quantity}</p>
+                      <p>{meal?.quantityInCart}</p>
                       <div
                         className="cart__section__left-side__cart_meal__price-buttons__right-side__minus-plus"
                         onClick={() => productMinus(meal, false)}

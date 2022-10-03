@@ -14,6 +14,7 @@ import 'Components/Tabs/Tabs.scss';
 
 import  TriangleLoader  from "Components/TriangleLoader/TriangleLoader";
 import  Home from "Components/Home/Home";
+import SearchBar from "Components/SearchBar/SearchBar";
 
 
 
@@ -35,15 +36,12 @@ function Tabs() {
   const [activeDiv, SetActiveDiv] = useState(null);
   const [index, setIndex] = useState(null);
 
-  const [currectTabData, setCurrectTabData] = useState([]);
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     onCallForTabsData();
+    setMealsContext([])
   }, []);
-
-  useEffect(() => {
-  }, [currectTabData]);
 
   useEffect(() => {
     if (
@@ -80,12 +78,13 @@ function Tabs() {
   }
 
   function onAddPrice(data) {
+    
     const newMealsArr = data.map((meal) => {
-      meal.price = Math.ceil(Math.random() * 15)+3;
-      meal.quantity = 1
-      return meal
-    })
-    setCurrectTabData(newMealsArr)
+      meal.price = Math.ceil(Math.random() * 15) + 3;
+      meal.quantity = 5
+      return meal;
+    });
+
     setMealsContext(newMealsArr);
   }
 
@@ -185,11 +184,8 @@ function Tabs() {
             })}
         </div>
       </div>
-      {loader ? (
-        <TriangleLoader />
-      ) : (
-        <Home currectTabData={currectTabData} selectedPath={selectedPath} />
-      )}
+      <SearchBar />
+      {loader ? <TriangleLoader /> : <Home  selectedPath={selectedPath} />}
     </>
   );
 }

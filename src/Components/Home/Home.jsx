@@ -1,48 +1,32 @@
 import cx from "classnames";
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 
 import MealItem from "Components/Meal/Meal";
 import "Components/Home/Home.scss";
-import { MealsContext } from "Routes/AppRoutes";
+import {
+  MealsContext,
+  ListViewTypeContext,
+  LIST_VIEW_TYPES,
+} from "Routes/AppRoutes";
 
-function Home({ currectTabData, selectedPath }) {
+function Home({ selectedPath }) {
   const { mealsContext, setmealsContext } = useContext(MealsContext);
+  const { listViewType, setListViewType } = useContext(ListViewTypeContext);
 
-  const [isSearchOpened, setIsSearchOpened] = useState(false);
-  const [defaultMeals, setDefaultMeals] = useState(currectTabData);
+  const measlSection = useRef(null);
 
-  function onSearch(value) {
-    if (currectTabData) {
-      let filterMeals = currectTabData.filter((meal) => {
-        return meal.strMeal.toLowerCase().includes(value.toLowerCase());
-      });
-      setDefaultMeals(filterMeals);
-    }
-  }
+  const [defaultMeals, setDefaultMeals] = useState(mealsContext);
 
   return (
     <>
-      <div className="search_bar">
-        <div
-          className={cx({
-            "search_bar__box  d-flex  align-items-center": true,
-            opened: isSearchOpened,
-          })}
-          onClick={() => setIsSearchOpened(true)}
-        >
-          <label htmlFor="text" className="search_bar__box__label" tabIndex="1">
-            <i className="fa-solid fa-magnifying-glass fa-lg"></i>
-            <input
-              autoComplete="off"
-              type="text"
-              id="text"
-              className="search_bar__box__label__input"
-              onChange={(evt) => onSearch(evt.target.value)}
-            />
-          </label>
-        </div>
-      </div>
-      <div className="tabs__meals__Section container">
+      <div
+        ref={measlSection}
+        className={cx({
+          "tabs__meals__Section container": true,
+          "tabs__meals__Section--two_Columns":
+            listViewType === LIST_VIEW_TYPES.TWO_COLUMNS,
+        })}
+      >
         {defaultMeals &&
           Array.isArray(defaultMeals) &&
           defaultMeals.map((meal, index) => {

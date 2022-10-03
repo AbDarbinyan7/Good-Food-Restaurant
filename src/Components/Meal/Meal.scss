@@ -4,12 +4,17 @@
   gap: 10px;
   color: white;
   padding-bottom: 100px;
-  min-height: 100vh;
+  min-height: 100%;
 
   @media screen and (max-width: 990px) {
     & {
       grid-template-columns: repeat(4, 1fr);
+      padding-top: 20px;
     }
+  }
+  .meal__link {
+    transition: 0.5s all !important;
+    position: relative;
   }
 
   .meal {
@@ -21,6 +26,7 @@
     color: white;
     border-radius: 10px;
     overflow: hidden;
+    min-height: 187px;
 
     .price_box {
       position: absolute;
@@ -81,6 +87,32 @@
     .meal__img {
       width: 100%;
       height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &.mealClone {
+      max-width: 187px;
+      max-height: 187px;
+      display: flex;
+      position: fixed;
+      transition: 800ms all ease;
+      z-index: 97979797;
+
+      .meal__img {
+        width: 100%;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      &.show_hide {
+        display: flex;
+      }
     }
   }
 }
