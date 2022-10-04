@@ -12,6 +12,7 @@
       padding-top: 20px;
     }
   }
+
   .meal__link {
     transition: 0.5s all !important;
     position: relative;
@@ -27,6 +28,7 @@
     border-radius: 10px;
     overflow: hidden;
     min-height: 187px;
+    max-height: 187px;
 
     .price_box {
       position: absolute;

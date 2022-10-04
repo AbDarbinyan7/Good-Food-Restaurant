@@ -53,4 +53,5 @@ a:hover {
 
 .main__container {
   min-height: 100vh;
+  margin-top: 80px;
 }

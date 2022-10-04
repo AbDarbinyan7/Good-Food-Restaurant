@@ -70,15 +70,25 @@
 .log_in_section {
   position: relative;
   display: flex;
-  padding: 10px 0;
   justify-content: space-between;
   align-items: center;
 
   &__wraper {
-    position: sticky;
+    width: 100vw;
+    position: fixed;
+    padding: 10px 0;
     top: 0;
     z-index: 99999;
-    background: rgba(0, 0, 0, 0.521);
+    transition: 0.3s;
+
+    &.smallHeader {
+      background: rgb(0, 0, 0);
+      padding: 0;
+
+      .logo__box {
+        height: 50px;
+      }
+    }
   }
 
   .log_in_left_side {
@@ -126,6 +136,7 @@
   }
 
   .logo__box {
+    transition: 0.3s all;
     height: 60px;
   }
 

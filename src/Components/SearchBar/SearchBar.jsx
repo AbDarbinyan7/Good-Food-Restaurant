@@ -6,25 +6,16 @@ import {
   ListViewTypeContext,
   LIST_VIEW_TYPES,
 } from "Routes/AppRoutes";
+
 import gridIcon from "Assets/img/gridIcon.svg";
 import ColumnIcon from "Components/Icons/ColumnIcon";
 import "Components/Home/Home.scss";
 
-function SearchBar() {
-  const { mealsContext, setmealsContext } = useContext(MealsContext);
+function SearchBar({ value, onSearch }) {
+  const { mealsContext, setMealsContext } = useContext(MealsContext);
   const { listViewType, setListViewType } = useContext(ListViewTypeContext);
-
   const [isSearchOpened, setIsSearchOpened] = useState(false);
-  const [defaultMeals, setDefaultMeals] = useState(mealsContext);
 
-  function onSearch(value) {
-    if (mealsContext) {
-      let filterMeals = mealsContext.filter((meal) => {
-        return meal.strMeal.toLowerCase().includes(value.toLowerCase());
-      });
-      setDefaultMeals(filterMeals);
-    }
-  }
   return (
     <div className="search_bar container">
       <div className={"search_bar__box  d-flex  align-items-center"}>
@@ -36,6 +27,7 @@ function SearchBar() {
             id="text"
             className="search_bar__box__label__input"
             onChange={(evt) => onSearch(evt.target.value)}
+            placeholder="Search your meal..."
           />
         </label>
       </div>

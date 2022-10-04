@@ -1,0 +1,23 @@
+@import "~Assets/SCSS/Variable";
+
+.chevron_box {
+  padding: 10px;
+  position: fixed;
+  bottom: -50%;
+  right: 20px;
+  z-index: 999999999999;
+  color: black;
+  transition: 1s;
+  background: white;
+  cursor: pointer;
+
+  &:hover {
+    transition: 0.3s;
+    background: black;
+    color: $color_lightgreen;
+  }
+
+  &__active {
+    bottom: 20px;
+  }
+}

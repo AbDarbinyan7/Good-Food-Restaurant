@@ -116,8 +116,8 @@ function MealItem({ selectedPath, meal }) {
 
   return (
     <>
-      <Link
-        to={`${CATEGORIES}/${selectedPath}/${meal.idMeal}`}
+      <div
+        // to={`${CATEGORIES}/${selectedPath}/${meal.idMeal}`}
         className="meal__link"
       >
         {cloneMeal?.idMeal === meal.idMeal && showAnimation && (
@@ -175,7 +175,7 @@ function MealItem({ selectedPath, meal }) {
             <img src={meal.strMealThumb}></img>
           </div>
         </div>
-      </Link>
+      </div>
     </>
   );
 }

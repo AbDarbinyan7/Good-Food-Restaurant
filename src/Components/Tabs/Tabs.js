@@ -12,9 +12,7 @@ import { CATEGORIES } from "Routes/RoutePaths/RoutePaths"
 
 import 'Components/Tabs/Tabs.scss'; 
 
-import  TriangleLoader  from "Components/TriangleLoader/TriangleLoader";
 import  Home from "Components/Home/Home";
-import SearchBar from "Components/SearchBar/SearchBar";
 
 
 
@@ -40,7 +38,6 @@ function Tabs() {
 
   useEffect(() => {
     onCallForTabsData();
-    setMealsContext([])
   }, []);
 
   useEffect(() => {
@@ -49,6 +46,7 @@ function Tabs() {
       (defaultTab && defaultTabIndex === 0)
     ) {
       onCallForCurrectTabData(defaultTab.strCategory);
+      setMealsContext([]);
     }
   }, [defaultTabIndex, defaultTab]);
 
@@ -184,8 +182,9 @@ function Tabs() {
             })}
         </div>
       </div>
-      <SearchBar />
-      {loader ? <TriangleLoader /> : <Home  selectedPath={selectedPath} />}
+   
+      <Home loading={loader} selectedPath={selectedPath} />
+      
     </>
   );
 }

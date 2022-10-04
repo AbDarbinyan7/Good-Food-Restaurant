@@ -12,6 +12,7 @@ import SearchBar from "Components/SearchBar/SearchBar";
 
 import {HOME, CATEGORIES, HOMECATEGORIESMEAL, NOTFOUND, CART} from "Routes/RoutePaths/RoutePaths"
 import { useEffect } from 'react';
+import ScrollTop from 'Components/ScrollTop/ScrollTop';
 
 
 export const TabContext = createContext(null)
@@ -40,6 +41,8 @@ export const modalContextDefault = {
 function AppRoutes (){ 
 	const [ tabContext, setTabContext ] = useState([]);
 	const [ mealsContext, setMealsContext ] = useState([]);
+
+
 	const [cartContext, setCartContext] = useState([]);
 	const [modalContext, setModalContext] = useState(modalContextDefault);
 	const [listViewType, setListViewType] = useState(LIST_VIEW_TYPES.GRID);
@@ -62,7 +65,10 @@ return (
                   <Routes>
                     <Route path={HOME} element={<Tabs />} />
                     <Route path={CATEGORIES} element={<Tabs />} />
-                    <Route path={CATEGORIES + "/:selectedPath"} element={<Tabs />} />
+                    <Route
+                      path={CATEGORIES + "/:selectedPath"}
+                      element={<Tabs />}
+                    />
                     <Route
                       path={CATEGORIES + "/:selectedPath" + "/:mealPath"}
                       element={<SingleCategories />}

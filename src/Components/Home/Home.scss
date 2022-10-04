@@ -14,7 +14,8 @@
     align-items: end;
     background: rgba(94, 94, 94, 0.4);
     padding: 5px;
-    min-height: 187px;
+    min-height: 160px !important;
+    max-height: 160px !important;
 
     .meal__img {
       height: 150px;
@@ -35,7 +36,6 @@
   justify-content: space-between;
 
   &__box {
-    width: 50px;
     background: rgba(0, 0, 0, 0.4);
     transition: 0.3s all;
     border-top-right-radius: 30px;
@@ -43,13 +43,7 @@
     min-height: 50px;
 
     &:hover {
-      width: 300px;
-      background: rgba(0, 0, 0, 0.5);
-
-      .search_bar__box__label__input {
-        display: block;
-        width: 160px;
-      }
+      background: rgba(0, 0, 0, 0.568);
     }
 
     &__label {
@@ -59,17 +53,13 @@
       padding-left: 10px;
       width: 100%;
 
-      i {
-        cursor: pointer;
-      }
-
       &__input {
+        width: 300px;
         padding-left: 20px;
         background: transparent;
         color: white;
         outline: none;
         border: none;
-        display: none;
       }
     }
   }
