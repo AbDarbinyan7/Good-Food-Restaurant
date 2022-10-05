@@ -36,6 +36,20 @@ function Tabs() {
 
   const [loader, setLoader] = useState(true);
 
+
+
+    useEffect(() => {
+      window.addEventListener("resize", onChangeStyles);
+
+      return () => {
+        window.removeEventListener("resize", onChangeStyles);
+      };
+    });
+
+     function handleResize() {
+       console.log("resized to: ", window.innerWidth, "x", window.innerHeight);
+     }
+
   useEffect(() => {
     onCallForTabsData();
   }, []);

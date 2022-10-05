@@ -80,9 +80,9 @@
     top: 0;
     z-index: 99999;
     transition: 0.3s;
+    background: black;
 
     &.smallHeader {
-      background: rgb(0, 0, 0);
       padding: 0;
 
       .logo__box {
