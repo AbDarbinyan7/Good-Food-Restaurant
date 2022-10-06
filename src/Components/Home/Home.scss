@@ -36,28 +36,28 @@
   justify-content: space-between;
 
   &__box {
-    background: rgb(0 0 0 / 60%);
+    background: rgba(255, 255, 255);
     transition: 0.3s all;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-    min-height: 50px;
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.568);
-    }
+    min-height: 40px;
 
     &__label {
-      color: $color_lightgreen;
+      color: black;
       display: flex;
       align-items: center;
       padding-left: 10px;
       width: 100%;
 
+      i {
+        font-size: 15px;
+      }
+
       &__input {
         width: 300px;
         padding-left: 20px;
         background: transparent;
-        color: white;
+        color: black;
         outline: none;
         border: none;
       }
