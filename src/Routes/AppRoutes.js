@@ -19,6 +19,7 @@ export const TabContext = createContext(null)
 export const MealsContext = createContext([]);
 export const CartContext = createContext([]);
 export const ModalContext = createContext([]);
+export const ViewedMEalsContext = createContext([]);
 export const ListViewTypeContext = createContext(null);
 export const CartLocationContext = createContext(null);
 
@@ -47,6 +48,7 @@ function AppRoutes (){
 	const [modalContext, setModalContext] = useState(modalContextDefault);
 	const [listViewType, setListViewType] = useState(LIST_VIEW_TYPES.GRID);
 	const [cartLocation, setCartLocation] = useState(CartLocationContext);
+	const [viewedMeals, setViewedMeals] = useState([]);
 
 return (
   <>
@@ -60,24 +62,28 @@ return (
               <CartLocationContext.Provider
                 value={{ cartLocation, setCartLocation }}
               >
-                <Header />
-                <div className="main__container">
-                  <Routes>
-                    <Route path={HOME} element={<Tabs />} />
-                    <Route path={CATEGORIES} element={<Tabs />} />
-                    <Route
-                      path={CATEGORIES + "/:selectedPath"}
-                      element={<Tabs />}
-                    />
-                    <Route
-                      path={CATEGORIES + "/:selectedPath" + "/:mealPath"}
-                      element={<SingleCategories />}
-                    />
-                    <Route path={CART} element={<CartPage />} />
-                    <Route path={NOTFOUND} element={<ErrorPage />} />
-                  </Routes>
-                </div>
-                <Footer />
+                <ViewedMEalsContext.Provider
+                  value={{ viewedMeals, setViewedMeals }}
+                >
+                  <Header />
+                  <div className="main__container">
+                    <Routes>
+                      <Route path={HOME} element={<Tabs />} />
+                      <Route path={CATEGORIES} element={<Tabs />} />
+                      <Route
+                        path={CATEGORIES + "/:selectedPath"}
+                        element={<Tabs />}
+                      />
+                      <Route
+                        path={CATEGORIES + "/:selectedPath" + "/:mealPath"}
+                        element={<SingleCategories />}
+                      />
+                      <Route path={CART} element={<CartPage />} />
+                      <Route path={NOTFOUND} element={<ErrorPage />} />
+                    </Routes>
+                  </div>
+                  <Footer />
+                </ViewedMEalsContext.Provider>
               </CartLocationContext.Provider>
             </ListViewTypeContext.Provider>
           </ModalContext.Provider>

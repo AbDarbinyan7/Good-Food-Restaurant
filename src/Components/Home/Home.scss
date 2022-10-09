@@ -1,46 +1,27 @@
 @import "~Assets/SCSS/Variable";
 
 .change_color {
-  color: $color_lightgreen;
+  color: #00adb5;
 }
 
-.tabs__meals__Section--two_Columns {
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 10px;
 
-  .meal {
-    flex-direction: row;
-    justify-content: start;
-    align-items: end;
-    background: rgba(94, 94, 94, 0.4);
-    padding: 5px;
-    min-height: 160px !important;
-    max-height: 160px !important;
-
-    .meal__img {
-      height: 150px;
-      width: 150px;
-
-      img {
-        border-radius: 10px;
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-}
 
 .search_bar {
-  margin: 10px auto;
+  padding: 5px 0;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+
+  &__section {
+    background: #393e46;
+  }
 
   &__box {
     background: rgba(255, 255, 255);
     transition: 0.3s all;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-    min-height: 40px;
+    height: 30px;
 
     &__label {
       color: black;
@@ -69,17 +50,19 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(0, 0, 0, 60%);
     padding: 3px 10px;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
 
     &__list_icon {
       transition: 0.5s;
       &:hover {
-        color: $color_lightgreen;
         transform: rotate(360deg);
       }
     }
   }
+}
+
+.disable_meals {
+  display: flex;
+  font-size: 150px;
+  color: gray;
 }

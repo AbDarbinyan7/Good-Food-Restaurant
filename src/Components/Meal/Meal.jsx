@@ -6,6 +6,7 @@ import {
   CartContext,
   MealsContext,
   CartLocationContext,
+  ViewedMEalsContext,
 } from "Routes/AppRoutes";
 import { useEffect, useState } from "react";
 
@@ -97,9 +98,9 @@ function MealItem({ selectedPath, meal }) {
       mealDiv.style.left = realMealLoc.left + "px";
       mealDiv.style.top = realMealLoc.top + "px";
       mealDiv.style.transform = "scale(0.2)";
+      console.log(mealDiv);
 
       setTimeout(() => {
-        console.log(cartLoc);
         mealDiv.style.left = cartLoc.left - 70 + "px";
         mealDiv.style.top = cartLoc.top - 70 + "px";
       }, 100);
@@ -116,8 +117,8 @@ function MealItem({ selectedPath, meal }) {
 
   return (
     <>
-      <div
-        // to={`${CATEGORIES}/${selectedPath}/${meal.idMeal}`}
+      <Link
+        to={`${CATEGORIES}/${selectedPath}/${meal.idMeal}`}
         className="meal__link"
       >
         {cloneMeal?.idMeal === meal.idMeal && showAnimation && (
@@ -175,7 +176,7 @@ function MealItem({ selectedPath, meal }) {
             <img src={meal.strMealThumb}></img>
           </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 }

@@ -1,7 +1,7 @@
 const ColumnIcon = () => {
   return (
     <svg
-      class="icon icon-tabler icon-tabler-columns"
+      className="icon icon-tabler icon-tabler-columns"
       fill="none"
       height="26"
       stroke="currentColor"

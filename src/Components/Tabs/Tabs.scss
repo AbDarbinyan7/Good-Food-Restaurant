@@ -2,15 +2,14 @@
 
 .tabs__section {
   display: flex;
-  background: rgb(255 255 255 / 62%);
+  background: #eeeeee;
   justify-content: center;
-  margin-bottom: 10px;
-  min-height: 62px;
+  min-height: 47px;
 
   .tabs {
     position: relative;
     display: flex;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     color: white;
     transition: 0.5s;
@@ -39,11 +38,12 @@
       height: 5px;
       background: rgb(255, 0, 0);
       transition: 0.3s;
+      bottom: 0;
     }
 
     .tab {
       color: black;
-      padding: 15px 30px;
+      padding: 10px 30px;
       display: flex;
       align-items: center;
       font-weight: 400;
@@ -82,7 +82,7 @@
   padding: 200px 0;
 }
 .container {
-  max-width: 1000px;
+  max-width: 1281px;
   margin: 0 auto;
 
   @media screen and (max-width: 990px) {

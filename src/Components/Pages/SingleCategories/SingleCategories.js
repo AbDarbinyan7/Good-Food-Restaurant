@@ -10,16 +10,51 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import 'Components/Pages/SingleCategories/SingleCategories.scss';
 import { getOrSetLocalStorageItem } from "Helper/index.js";
 import {CATEGORIES} from "Routes/RoutePaths/RoutePaths"
-import { TabContext } from "Routes/AppRoutes";
+import { MealsContext, TabContext, ViewedMEalsContext } from "Routes/AppRoutes";
 
 function SingleCategories() {
   const { tabContext, setTabContext } = useContext(TabContext)
+  const { viewedMeals, setViewedMeals } = useContext(ViewedMEalsContext);
+  const { mealsContext, setMealsContext } = useContext(MealsContext);
   
   const navigate = useNavigate();
   const { mealPath } = useParams()
 
   const [meals, setMeals] = useState(null);
   const [meal, setMeal] = useState(null)
+  
+  useEffect(() => {
+    if (meal) {
+      const mealWPrie = mealsContext.find((e)=>{
+        return e.idMeal === meal.idMeal
+      })
+
+       const oldLocalStorValue = getOrSetLocalStorageItem("viewedMeals");
+      
+      if (oldLocalStorValue) {
+        const isProductExist = oldLocalStorValue.find((product) => {
+          return product.idMeal === mealWPrie.idMeal;
+        });
+
+        if (isProductExist ) {
+          return;
+        }
+
+        if (!isProductExist && oldLocalStorValue.length !== 5) {
+          oldLocalStorValue.unshift(mealWPrie);
+          getOrSetLocalStorageItem("viewedMeals", oldLocalStorValue);
+        }else if (!isProductExist && oldLocalStorValue.length >=5 ) {
+          oldLocalStorValue.pop();
+          oldLocalStorValue.unshift(mealWPrie);
+          getOrSetLocalStorageItem("viewedMeals", oldLocalStorValue);
+        }
+      } else {
+        const newLocalStorValue = [mealWPrie];
+        getOrSetLocalStorageItem("viewedMeals", newLocalStorValue);
+      }
+    }
+  }, [meal]);
+
 
   useEffect(() => {
     if (mealPath) {

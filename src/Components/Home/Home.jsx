@@ -4,23 +4,42 @@ import { useState, useContext, useRef, useEffect } from "react";
 import MealItem from "Components/Meal/Meal";
 import SearchBar from "Components/SearchBar/SearchBar";
 import "Components/Home/Home.scss";
+
 import {
+  CartContext,
   MealsContext,
   ListViewTypeContext,
   LIST_VIEW_TYPES,
+  ViewedMEalsContext,
 } from "Routes/AppRoutes";
 
 import TriangleLoader from "Components/TriangleLoader/TriangleLoader";
+import CustumCarousel from "Components/CustumCarousel/CustumCarousel";
+import { getOrSetLocalStorageItem } from "Helper";
 
 function Home({ selectedPath, loading }) {
   const { mealsContext, setMealsContext } = useContext(MealsContext);
   const { listViewType, setListViewType } = useContext(ListViewTypeContext);
   const [defaultMeals, setDefaultMeals] = useState(mealsContext);
+  const { cartContext, setCartContext } = useContext(CartContext);
+  const { viewedMeals, setViewedMeals } = useContext(ViewedMEalsContext);
+
+  const [viewedMealsInLoc, setViewedMealsInLoc] = useState(null);
 
   const measlSection = useRef(null);
   useEffect(() => {
     setDefaultMeals(mealsContext);
   }, [mealsContext]);
+
+  useEffect(() => {
+    setViewedMealsInLoc(getOrSetLocalStorageItem("viewedMeals"));
+  }, []);
+
+  // useEffect(() => {
+  //   if (viewedMealsInLoc) {
+  //     console.log(viewedMealsInLoc);
+  //   }
+  // }, [viewedMealsInLoc]);
 
   function onSearch(value) {
     if (mealsContext.length) {
@@ -30,35 +49,70 @@ function Home({ selectedPath, loading }) {
       setDefaultMeals(filterMeals);
     }
   }
+  function cc() {
+    if (viewedMealsInLoc) {
+      return viewedMealsInLoc;
+    } else {
+      return [];
+    }
+  }
 
   return (
     <>
       <SearchBar onSearch={onSearch} />
-
-      {loading ? (
-        <TriangleLoader />
-      ) : (
-        <div
-          ref={measlSection}
-          className={cx({
-            "tabs__meals__Section container": true,
-            "tabs__meals__Section--two_Columns":
-              listViewType === LIST_VIEW_TYPES.TWO_COLUMNS,
-          })}
-        >
-          {defaultMeals &&
-            Array.isArray(defaultMeals) &&
-            defaultMeals.map((meal, index) => {
-              return (
-                <MealItem
-                  selectedPath={selectedPath}
-                  meal={meal}
-                  key={index.toString()}
-                />
-              );
-            })}
-        </div>
-      )}
+      <div className="custum_section container">
+        {loading ? (
+          <TriangleLoader />
+        ) : (
+          <>
+            <span className="section__title">
+              <p>Meals</p>{" "}
+              <i className="fa-solid fa-pizza-slice fa-xs mt-1"></i>
+            </span>
+            <div
+              ref={measlSection}
+              className={cx({
+                "tabs__meals__section ": true,
+                "tabs__meals__section--two_Columns":
+                  listViewType === LIST_VIEW_TYPES.TWO_COLUMNS,
+              })}
+            >
+              {defaultMeals &&
+                Array.isArray(defaultMeals) &&
+                defaultMeals.map((meal, index) => {
+                  return (
+                    <MealItem
+                      selectedPath={selectedPath}
+                      meal={meal}
+                      key={index.toString()}
+                    />
+                  );
+                })}
+            </div>
+          </>
+        )}
+      </div>
+      <div className="custum_section container">
+        <span className="section__title">
+          <p>Last viewed products</p>
+        </span>
+        <CustumCarousel
+          title="Product on Cart"
+          data={cc()}
+          selectedPath={selectedPath}
+        />
+      </div>
+      <div className="custum_section container">
+        <span className="section__title">
+          <p>Products in cart</p>
+          <i className="fa-solid fa-cart-shopping fa-xs mt-1"></i>
+        </span>
+        <CustumCarousel
+          title="Product on Cart"
+          data={cartContext}
+          selectedPath={selectedPath}
+        />
+      </div>
     </>
   );
 }
