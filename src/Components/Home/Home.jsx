@@ -49,7 +49,7 @@ function Home({ selectedPath, loading }) {
       setDefaultMeals(filterMeals);
     }
   }
-  function cc() {
+  function onCheckLocData() {
     if (viewedMealsInLoc) {
       return viewedMealsInLoc;
     } else {
@@ -66,8 +66,10 @@ function Home({ selectedPath, loading }) {
         ) : (
           <>
             <span className="section__title">
-              <p>Meals</p>{" "}
-              <i className="fa-solid fa-pizza-slice fa-xs mt-1"></i>
+              <p>Meals</p>
+              <div>
+                <i className="fa-solid fa-pizza-slice fa-xs "></i>
+              </div>
             </span>
             <div
               ref={measlSection}
@@ -92,27 +94,18 @@ function Home({ selectedPath, loading }) {
           </>
         )}
       </div>
-      <div className="custum_section container">
-        <span className="section__title">
-          <p>Last viewed products</p>
-        </span>
-        <CustumCarousel
-          title="Product on Cart"
-          data={cc()}
-          selectedPath={selectedPath}
-        />
-      </div>
-      <div className="custum_section container">
-        <span className="section__title">
-          <p>Products in cart</p>
-          <i className="fa-solid fa-cart-shopping fa-xs mt-1"></i>
-        </span>
-        <CustumCarousel
-          title="Product on Cart"
-          data={cartContext}
-          selectedPath={selectedPath}
-        />
-      </div>
+      <CustumCarousel
+        title="Last viewed products"
+        iconName="fa-solid fa-eye fa-xs "
+        data={onCheckLocData()}
+        selectedPath={selectedPath}
+      />
+      <CustumCarousel
+        title="Products in cart"
+        iconName="fa-solid fa-cart-shopping fa-xs "
+        data={cartContext}
+        selectedPath={selectedPath}
+      />
     </>
   );
 }

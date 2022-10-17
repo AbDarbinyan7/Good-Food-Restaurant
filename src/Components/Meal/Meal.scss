@@ -1,3 +1,5 @@
+@import "Assets/SCSS/Media.scss";
+
 .section__title {
   display: flex;
   align-items: center;
@@ -5,9 +7,13 @@
   font-weight: 300;
   gap: 8px;
   margin-bottom: 10px;
+
+  @include media(mobile) {
+    font-size: 17px;
+  }
 }
 .custum_section {
-  background: #eeeeee7c;
+  background: hsla(0, 0%, 100%, 0.63);
   padding: 10px 20px;
   margin: 20px auto;
   border-radius: 30px;
@@ -27,35 +33,46 @@
   border-radius: 30px;
   margin: 10px 0;
 
+  @include media(largeDesktop) {
+    grid-template-columns: repeat(5, 1fr);
+    padding-top: 20px;
+  }
+
+  @include media(mobile) {
+    grid-template-columns: 1fr 1fr;
+    padding-top: 0px !important;
+
+    .meal_link__meal {
+      min-height: 100px !important;
+    }
+    .custum_section {
+      margin: 10px auto !important;
+    }
+  }
+
   &__wraper {
     background: #eeeeee;
     padding: 20px;
     margin: 20px auto;
     border-radius: 30px;
   }
-  @media screen and (max-width: 1290px) {
-    & {
-      grid-template-columns: repeat(5, 1fr);
-      padding-top: 20px;
-    }
-  }
-  @media screen and (max-width: 960px) {
-    & {
-      grid-template-columns: repeat(4, 1fr);
-      padding-top: 20px;
-    }
-  }
 
-  .meal__link {
-    transition: 0.5s all !important;
-    position: relative;
-  }
+  // @media screen and (max-width: 960px) {
+  //   & {
+  //     grid-template-columns: repeat(4, 1fr);
+  //     padding-top: 20px;
+  //   }
+  // }
 
   &--two_Columns {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px;
 
-    .meal {
+    @include media(mobile) {
+      grid-template-columns: 1fr !important;
+    }
+
+    .meal_link__meal {
       flex-direction: row;
       justify-content: start;
       align-items: end;
@@ -63,23 +80,7 @@
       padding: 5px;
       min-height: 160px !important;
 
-      // .title__modal {
-      //   max-height: 100%;
-      //   height: 100%;
-      //   background: transparent;
-
-      //   cursor: pointer;
-
-      //   .add_buy__btns {
-      //     display: grid;
-      //   }
-
-      //   .price_box {
-      //     background: transparent;
-      //   }
-      // }
-
-      .meal__img {
+      &__img {
         height: 150px;
         width: 150px;
 
@@ -93,92 +94,38 @@
   }
 }
 
-.meal {
+.meal_link {
+  transition: 0.5s all !important;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: center;
-  color: white;
-  border-radius: 10px;
-  overflow: hidden;
-  min-height: 198px;
-  box-shadow: 0 0 4px 0px #646464;
 
-  .price_box {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 0px 5px;
-    font-weight: bold;
-    text-align: center;
-    color: white;
-    font-size: 18px;
-    background: rgba(48, 48, 48, 0.5);
-    z-index: 5656;
-    transition: 0.3s;
-  }
-
-  .title__modal {
-    width: 100%;
-    max-height: 50px;
-    position: absolute;
+  &__meal {
+    cursor: pointer;
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    align-items: center;
     justify-content: end;
-    z-index: 2;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 5px 0;
-    transition: 0.3s all;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 198px;
+    box-shadow: 0 0 4px 0px #646464;
 
-    .meal__title {
-      font-size: 13px;
-      padding: 0 5px;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      max-width: 100%;
-    }
-  }
+    &:hover {
+      .meal_link__meal__price_box {
+        background: transparent;
+      }
 
-  &:hover {
-    cursor: pointer;
+      .meal_link__meal__modal {
+        min-height: 100%;
+      }
 
-    .title__modal {
-      max-height: 100%;
-      height: 100%;
+      .meal_link__meal__modal__add_buy__btns {
+        display: grid;
+      }
     }
 
-    .add_buy__btns {
-      display: grid;
-    }
-    .price_box {
-      background: transparent;
-    }
-  }
-
-  .meal__img {
-    width: 100%;
-    height: 100%;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &.mealClone {
-    max-width: 187px;
-    max-height: 187px;
-    display: flex;
-    position: fixed;
-    transition: 800ms all ease;
-    z-index: 97979797;
-
-    .meal__img {
+    &__img {
       width: 100%;
       height: 100%;
       img {
@@ -187,8 +134,112 @@
       }
     }
 
-    &.show_hide {
+    &__price_box {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 0px 5px;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+      font-size: 18px;
+      background: rgba(48, 48, 48, 0.5);
+      z-index: 5656;
+      transition: 0.3s;
+    }
+
+    &__modal {
+      width: 100%;
+      min-height: 30px;
+      position: absolute;
       display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: end;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 5px 0;
+      transition: 0.3s all;
+
+      &__add_buy__btns {
+        display: none;
+        gap: 10px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: 1s;
+
+        .add_btn {
+          background: transparent;
+          color: white;
+          border: 2px dashed rgb(255, 255, 255);
+          white-space: nowrap;
+
+          &.disabled {
+            opacity: 0.4;
+            cursor: default;
+
+            &:hover {
+              color: yellow;
+              border: 2px dashed yellow;
+            }
+          }
+
+          &:hover {
+            color: yellow;
+            border: 2px dashed yellow;
+          }
+
+          &:active {
+            color: white;
+            border: 2px dashed white;
+          }
+        }
+
+        .buy_btn {
+          white-space: nowrap;
+          color: white;
+
+          &:hover {
+            background: rgb(0, 218, 0) !important;
+          }
+        }
+      }
+
+      &__title {
+        font-size: 13px;
+        padding: 0 5px;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+      }
+    }
+
+    &.mealClone {
+      max-width: 187px;
+      max-height: 187px;
+      display: flex;
+      position: fixed;
+      transition: 800ms all ease;
+      z-index: 97979797;
+
+      .meal__img {
+        width: 100%;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      &.show_hide {
+        display: flex;
+      }
     }
   }
 }

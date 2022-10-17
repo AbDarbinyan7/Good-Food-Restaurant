@@ -57,3 +57,9 @@ a:hover {
   min-height: 100vh;
   margin-top: 80px;
 }
+
+@media (max-width: 599px) {
+  .main__container {
+    margin-top: 60px;
+  }
+}

@@ -1,0 +1,20 @@
+.button {
+  font-size: 16px;
+  font-weight: initial;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  text-decoration: none;
+}
+.login__btn {
+  background-color: #222831;
+  transition: 0.3s;
+  overflow: hidden;
+  border-radius: 5px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.192);
+  }
+}

@@ -10,6 +10,7 @@ import { CartContext, CartLocationContext } from "Routes/AppRoutes";
 import { useRef } from "react";
 import { useEffect } from "react";
 import ScrollTop from "Components/ScrollTop/ScrollTop";
+import  Button  from "Components/Button/Button";
 
 const LINKS = [
   { label: "About us", src: "#" },
@@ -70,9 +71,44 @@ function Header() {
         })}
       >
         <div className="log_in_section container">
-          <div className="log_in_left_side">
-            <Link to={"/"} className="logo__box">
-              <img src={logo} className="logo" />
+          <div className="log_in_section__mobile d-none ">
+            <Link to={"/"} className="log_in_section__mobile__logo__box ">
+              <img
+                src={logo}
+                className="log_in_section__left_side__logo__box__logo"
+              />
+            </Link>
+            <i className="fa-solid fa-bars fa-2xl menu_Icon"></i>
+          </div>
+          <div className="log_in_section__mobile_modal d-none container">
+            <div className="log_in_section__mobile_modal__links">
+              {LINKS.map((link, i) => (
+                <a key={i} href={link.src}>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+            <div className="log_in_section__mobile_modal__buttons">
+              <div className="conteudo">
+                <Button
+                  text="Log In"
+                  bgColor="#222831"
+                  className="conteudo__log_in"
+                />
+              </div>
+              <Button
+                text="Sign in"
+                bgColor="rgb(0, 0, 255)"
+                className="log_in_section__right_side__sign_in"
+              />
+            </div>
+          </div>
+          <div className="log_in_section__left_side">
+            <Link to={"/"} className="log_in_section__left_side__logo__box">
+              <img
+                src={logo}
+                className="log_in_section__left_side__logo__box__logo"
+              />
             </Link>
             <nav>
               {LINKS.map((link, i) => (
@@ -82,14 +118,28 @@ function Header() {
               ))}
             </nav>
           </div>
-          <div className="btn_group_box">
-            <button className="login__btn btn__styles">Log In</button>
-            <button className="signin__btn btn__styles">Sign In</button>
-            <Link ref={cartRef} to="/cart" className="cart__btn btn__styles">
-              <div className="cart_quantity">
+          <div className="log_in_section__right_side">
+            <div className="conteudo">
+              <Button
+                text="Log In"
+                bgColor="#222831"
+                className="conteudo__log_in"
+              />
+            </div>
+            <Button
+              text="Sign in"
+              bgColor="rgb(0, 0, 255)"
+              className="log_in_section__right_side__sign_in"
+            />
+            <Link
+              ref={cartRef}
+              to="/cart"
+              className="log_in_section__right_side__cart__btn button"
+            >
+              <div className="log_in_section__right_side__cart__btn__cart_quantity">
                 <p>{onProductCount()}</p>
               </div>
-              <i className="fa-solid fa-cart-shopping"></i>
+              <i className="fa-solid fa-cart-shopping"></i> 
             </Link>
           </div>
         </div>

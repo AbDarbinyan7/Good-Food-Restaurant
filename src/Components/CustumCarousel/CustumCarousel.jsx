@@ -1,9 +1,11 @@
+import React from "react";
+
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "Components/CustumCarousel/CustumCarousel.scss";
 import MealItem from "Components/Meal/Meal";
 
-function CustumCarousel({ title, data, selectedPath }) {
+function CustumCarousel({ title, iconName, data, selectedPath }) {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -23,18 +25,30 @@ function CustumCarousel({ title, data, selectedPath }) {
     },
   };
 
+  if (!data.length) {
+    return <React.Fragment />;
+  }
+
   return (
-    <Carousel responsive={responsive} className="carousel">
-      {data &&
-        Array.isArray(data) &&
-        data.map((meal, index) => {
-          return (
-            <div key={index} className="p-4 carousel__item">
-              <MealItem selectedPath={selectedPath} meal={meal} />
-            </div>
-          );
-        })}
-    </Carousel>
+    <div className="custum_section container">
+      <span className="section__title">
+        <p>{title}</p>
+        <div>
+          <i className={iconName}></i>
+        </div>
+      </span>
+      <Carousel responsive={responsive} className="carousel">
+        {data &&
+          Array.isArray(data) &&
+          data.map((meal, index) => {
+            return (
+              <div key={index} className="p-4 carousel__item">
+                <MealItem selectedPath={selectedPath} meal={meal} />
+              </div>
+            );
+          })}
+      </Carousel>
+    </div>
   );
 }
 

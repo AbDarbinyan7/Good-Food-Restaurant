@@ -1,6 +1,11 @@
 import { useState, useContext } from "react";
 import cx from "classnames";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+
 import {
   MealsContext,
   ListViewTypeContext,
@@ -31,6 +36,9 @@ function SearchBar({ value, onSearch }) {
               placeholder="Search your meal..."
             />
           </label>
+          <div className="search_bar__box__mobile_cart_icon">
+            <i className="fa-solid fa-cart-shopping"></i>
+          </div>
         </div>
         <div className="search_bar__right_side">
           <div
@@ -42,19 +50,7 @@ function SearchBar({ value, onSearch }) {
               change_color: listViewType === LIST_VIEW_TYPES.TWO_COLUMNS,
             })}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="100%"
-              height="30px"
-              fill="currentColor"
-              className="bi bi-list"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fillRule="evenodd"
-                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-              />
-            </svg>
+            <i className="fa-solid fa-bars fa-xl"></i>
           </div>
           <div
             onClick={(e) => {
@@ -67,8 +63,8 @@ function SearchBar({ value, onSearch }) {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="100%"
-              height="25px"
+              width="22px"
+              height="22px"
               fill="currentColor"
               className="bi bi-grid-3x3-gap-fill"
               viewBox="0 0 16 16"

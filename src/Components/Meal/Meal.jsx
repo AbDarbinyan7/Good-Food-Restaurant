@@ -1,20 +1,19 @@
 import cx from "classnames";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useContext } from "react";
+import { useContext, useRef, useEffect, useState } from "react";
 import {
   CartContext,
   MealsContext,
   CartLocationContext,
   ViewedMEalsContext,
 } from "Routes/AppRoutes";
-import { useEffect, useState } from "react";
 
 import { CART, CATEGORIES } from "Routes/RoutePaths/RoutePaths";
 import "Components/Meal/Meal.scss";
-import { useRef } from "react";
+import Button from "Components/Button/Button";
 
-function MealItem({ selectedPath, meal }) {
+function MealItem({ selectedPath, meal = {} }) {
   const { cartContext, setCartContext } = useContext(CartContext);
   const { mealsContext, setMealsContext } = useContext(MealsContext);
   const { cartLocation, setCartLocation } = useContext(CartLocationContext);
@@ -39,9 +38,11 @@ function MealItem({ selectedPath, meal }) {
     e.preventDefault();
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
+    console.log("asada");
   }
 
   function setParams(meal) {
+    console.log("yaaaayy");
     let newCartList = [];
 
     const isProductExist = cartContext.find((product) => {
@@ -73,11 +74,11 @@ function MealItem({ selectedPath, meal }) {
 
   function checkDisable(meal) {
     const isProductExist = cartContext.find((product) => {
-      return product.idMeal === meal.idMeal;
+      return product?.idMeal === meal?.idMeal;
     });
 
     const isProductExistInMeals = mealsContext.find((el) => {
-      return el.idMeal === meal.idMeal;
+      return el?.idMeal === meal?.idMeal;
     });
 
     if (isProductExist && isProductExistInMeals) {
@@ -118,15 +119,15 @@ function MealItem({ selectedPath, meal }) {
   return (
     <>
       <Link
-        to={`${CATEGORIES}/${selectedPath}/${meal.idMeal}`}
-        className="meal__link"
+        to={`${CATEGORIES}/${selectedPath}/${meal?.idMeal}`}
+        className="meal_link"
       >
-        {cloneMeal?.idMeal === meal.idMeal && showAnimation && (
+        {cloneMeal?.idMeal === meal?.idMeal && showAnimation && (
           <div
             ref={mealRef}
             onClick={(e) => stopPropagation(e)}
             className={cx({
-              meal: true,
+              meal_link__meal: true,
               mealClone: true,
             })}
           >
@@ -138,24 +139,26 @@ function MealItem({ selectedPath, meal }) {
         <div
           ref={realMealRef}
           className={cx({
-            meal: true,
+            meal_link__meal: true,
           })}
         >
-          <div className="price_box">
-            <p className="price">{meal.price}.00 USD</p>
+          <div className="meal_link__meal__price_box">
+            <p className="meal_link__meal__price_box__price">
+              {meal?.price}.00 USD
+            </p>
           </div>
-          <div className="title__modal">
-            <div className="add_buy__btns">
-              <button
+          <div className="meal_link__meal__modal">
+            <div className="meal_link__meal__modal__add_buy__btns">
+              <Button
                 onClick={(e) => {
                   stopPropagation(e);
                   navigate(CART);
                   setParams(meal);
                 }}
-                className={"buy_btn login__btn btn__styles"}
-              >
-                Buy Now
-              </button>
+                text="Buy now"
+                bgColor="rgb(0, 165, 0)"
+                className="buy_btn"
+              />
               <button
                 onClick={(e) => {
                   stopPropagation(e);
@@ -163,17 +166,17 @@ function MealItem({ selectedPath, meal }) {
                   setShowAnimation(true);
                 }}
                 className={cx({
-                  "add_btn btn__styles": true,
+                  "add_btn button": true,
                   disabled: checkDisable(meal),
                 })}
               >
                 Add To Cart
               </button>
             </div>
-            <p className="meal__title"> {meal.strMeal}</p>
+            <p className="meal_link__meal__modal__title"> {meal?.strMeal}</p>
           </div>
-          <div className="meal__img">
-            <img src={meal.strMealThumb}></img>
+          <div className="meal_link__meal__img">
+            <img src={meal?.strMealThumb}></img>
           </div>
         </div>
       </Link>

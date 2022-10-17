@@ -33,7 +33,7 @@ function SingleCategories() {
       
       if (oldLocalStorValue) {
         const isProductExist = oldLocalStorValue.find((product) => {
-          return product.idMeal === mealWPrie.idMeal;
+          return product?.idMeal === mealWPrie?.idMeal;
         });
 
         if (isProductExist ) {

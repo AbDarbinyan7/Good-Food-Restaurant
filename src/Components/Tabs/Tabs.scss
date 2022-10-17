@@ -1,4 +1,5 @@
 @import "~Assets/SCSS/Variable";
+@import "Assets/SCSS/Media.scss";
 
 .tabs__section {
   display: flex;
@@ -14,24 +15,11 @@
     color: white;
     transition: 0.5s;
 
-    // @media screen and (max-width: 1145px) {
-    //   & {
-    //     font-size: 18px;
-
-    //     &::-webkit-scrollbar {
-    //       height: 5px;
-    //     }
-
-    //     &::-webkit-scrollbar-track {
-    //       background: rgb(65, 65, 65);
-    //     }
-
-    //     &::-webkit-scrollbar-thumb {
-    //       background-color: rgb(51, 51, 51);
-    //       outline: none;
-    //     }
-    //   }
-    // }
+    @include media(mobile) {
+      overflow-y: hidden;
+      overflow-x: scroll;
+      font-size: 16px;
+    }
 
     .scroll__line {
       position: absolute;
@@ -39,6 +27,10 @@
       background: rgb(255, 0, 0);
       transition: 0.3s;
       bottom: 0;
+
+      @include media(mobile) {
+        height: 3px;
+      }
     }
 
     .tab {
@@ -49,6 +41,10 @@
       font-weight: 400;
       cursor: pointer;
       transition: 0.5s;
+
+      @include media(mobile) {
+        padding: 5px 15px;
+      }
 
       &__title {
         transition: 0.1s;
@@ -88,7 +84,7 @@
   @media screen and (max-width: 990px) {
     & {
       max-width: 850px !important;
-      margin: 0 auto !important;
+      margin: 0 auto;
     }
   }
 }
