@@ -22,56 +22,37 @@
   align-items: center;
   font-family: "Mulish", sans-serif;
 
-  @include media(mobile) {
-    color: white;
+  &__mobile {
+    &__menu_icon {
+      transition: 0.3s;
+      z-index: 99999;
 
-    &__left_side {
-      display: none;
-    }
-
-    &__right_side {
-      display: none !important;
-    }
-
-    &__mobile {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-
-      &__logo__box {
-        max-width: 93px;
-        height: 50px !important;
-        img {
-          width: 100%;
-          height: 100%;
-        }
+      &.active_menu_icon {
+        transform: rotate(180deg);
       }
     }
 
-    &__mobile_modal {
+    &__modal {
+      transition: 0.5s all;
       display: flex;
       flex-direction: column;
-      text-align: center;
       gap: 10px;
       position: fixed;
       z-index: 9999;
       background: #222831;
       top: 0;
       left: 554px;
-      bottom: 0;
-      overflow: hidden !important;
+      height: 100vh;
+      overflow: hidden;
 
       &__links {
         display: flex;
         flex-direction: column;
-        text-align: center;
         gap: 10px;
-        margin: 20px 0;
+        margin: 50px 0 10px;
       }
       &__buttons {
         display: flex;
-        flex-direction: column;
         gap: 10px;
         align-items: center;
 
@@ -85,6 +66,34 @@
           animation: coresDancantes 2s linear infinite;
           padding: 2px;
           border-radius: 5px;
+        }
+      }
+    }
+  }
+
+  @include media(mobile) {
+    color: white;
+
+    &__left_side {
+      display: none;
+    }
+
+    &__right_side {
+      display: none !important;
+    }
+
+    &__mobile {
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      &__logo__box {
+        max-width: 93px;
+        height: 50px !important;
+        img {
+          width: 100%;
+          height: 100%;
         }
       }
     }
@@ -109,6 +118,10 @@
       display: flex;
       align-items: center;
       gap: 20px;
+
+      @include media(mobile) {
+        display: none;
+      }
     }
   }
 
@@ -194,4 +207,14 @@
   100% {
     filter: hue-rotate(360deg);
   }
+}
+
+.disable {
+  display: none !important;
+}
+.active {
+  display: flex !important;
+}
+.active_modal {
+  left: 0;
 }

@@ -11,6 +11,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import ScrollTop from "Components/ScrollTop/ScrollTop";
 import  Button  from "Components/Button/Button";
+import { css } from "@emotion/react";
 
 const LINKS = [
   { label: "About us", src: "#" },
@@ -24,6 +25,7 @@ function Header() {
   const { cartLocation, setCartLocation } = useContext(CartLocationContext);
   const cartRef = useRef(null)
   const [ smallHeader, setSmallHeader] = useState(false)
+  const [ menuModal, setMenuModal] = useState(false)
 
   useEffect(()=>{
     window.addEventListener("scroll", scrollFunction);
@@ -47,12 +49,14 @@ function Header() {
   };
 
   
-  useEffect(()=>{
+  useEffect(() => {
     if (cartRef) {
-      setCartLocation(cartRef)
+      setCartLocation(cartRef);
     }
-  },[cartRef])
-  
+  }, [cartRef]);
+
+
+ 
 
   function onProductCount() {
     let counter = 0
@@ -60,6 +64,19 @@ function Header() {
       counter = product.quantityInCart + counter;
     })
     return  counter
+  }
+
+  function onOpenMenuModal() {
+    const body = document.querySelector("body");
+
+    if (!menuModal) {
+      body.style.overflowY = "hidden";
+      setMenuModal(true);
+    }else{
+      setMenuModal(false)
+      body.style.overflowY = "scroll";
+    }
+    // setMenuModal(prevVal =>!prevVal)
   }
 
   return (
@@ -70,25 +87,39 @@ function Header() {
           smallHeader: smallHeader,
         })}
       >
-        <div className="log_in_section container">
-          <div className="log_in_section__mobile d-none ">
+        <div className="log_in_section  container">
+          <div className="log_in_section__mobile active ">
             <Link to={"/"} className="log_in_section__mobile__logo__box ">
               <img
                 src={logo}
                 className="log_in_section__left_side__logo__box__logo"
               />
             </Link>
-            <i className="fa-solid fa-bars fa-2xl menu_Icon"></i>
+            <div
+              className={cx({
+                log_in_section__mobile__menu_icon: true,
+                active_menu_icon: menuModal
+              })}
+              onClick={() => onOpenMenuModal()}
+            >
+              <i className="fa-solid fa-bars fa-2xl menu_Icon"></i>
+            </div>
           </div>
-          <div className="log_in_section__mobile_modal d-none container">
-            <div className="log_in_section__mobile_modal__links">
+          <div
+            className={cx({
+              log_in_section__mobile__modal: true,
+              container: true,
+              active_modal: menuModal,
+            })}
+          >
+            <div className="log_in_section__mobile__modal__links">
               {LINKS.map((link, i) => (
                 <a key={i} href={link.src}>
                   {link.label}
                 </a>
               ))}
             </div>
-            <div className="log_in_section__mobile_modal__buttons">
+            <div className="log_in_section__mobile__modal__buttons">
               <div className="conteudo">
                 <Button
                   text="Log In"
@@ -103,7 +134,7 @@ function Header() {
               />
             </div>
           </div>
-          <div className="log_in_section__left_side">
+          <div className="log_in_section__left_side disable">
             <Link to={"/"} className="log_in_section__left_side__logo__box">
               <img
                 src={logo}
@@ -139,7 +170,7 @@ function Header() {
               <div className="log_in_section__right_side__cart__btn__cart_quantity">
                 <p>{onProductCount()}</p>
               </div>
-              <i className="fa-solid fa-cart-shopping"></i> 
+              <i className="fa-solid fa-cart-shopping"></i>
             </Link>
           </div>
         </div>
