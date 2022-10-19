@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import cx from "classnames";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,16 +10,27 @@ import {
   MealsContext,
   ListViewTypeContext,
   LIST_VIEW_TYPES,
+  CartLocationContext,
 } from "Routes/AppRoutes";
 
 import gridIcon from "Assets/img/gridIcon.svg";
 import ColumnIcon from "Components/Icons/ColumnIcon";
 import "Components/Home/Home.scss";
+import { Link } from "react-router-dom";
 
 function SearchBar({ value, onSearch }) {
   const { mealsContext, setMealsContext } = useContext(MealsContext);
   const { listViewType, setListViewType } = useContext(ListViewTypeContext);
   const [isSearchOpened, setIsSearchOpened] = useState(false);
+  const { cartLocation, setCartLocation } = useContext(CartLocationContext);
+
+  const mobileCarRef = useRef(null);
+
+  useEffect(() => {
+    if (mobileCarRef) {
+      setCartLocation(mobileCarRef);
+    }
+  }, [mobileCarRef]);
 
   return (
     <div className="search_bar__section">
@@ -36,9 +47,13 @@ function SearchBar({ value, onSearch }) {
               placeholder="Search your meal..."
             />
           </label>
-          <div className="search_bar__box__mobile_cart_icon">
+          <Link
+            to="/cart"
+            ref={  mobileCarRef}
+            className="search_bar__box__mobile_cart_icon"
+          >
             <i className="fa-solid fa-cart-shopping"></i>
-          </div>
+          </Link>
         </div>
         <div className="search_bar__right_side">
           <div

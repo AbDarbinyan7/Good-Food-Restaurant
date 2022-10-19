@@ -88,7 +88,7 @@ function Header() {
         })}
       >
         <div className="log_in_section  container">
-          <div className="log_in_section__mobile active ">
+          <div className="log_in_section__mobile">
             <Link to={"/"} className="log_in_section__mobile__logo__box ">
               <img
                 src={logo}
@@ -98,11 +98,12 @@ function Header() {
             <div
               className={cx({
                 log_in_section__mobile__menu_icon: true,
-                active_menu_icon: menuModal
+                active_menu_icon: menuModal,
               })}
               onClick={() => onOpenMenuModal()}
             >
-              <i className="fa-solid fa-bars fa-2xl menu_Icon"></i>
+              {/* <i className="fa-solid fa-bars fa-2xl menu_Icon"></i> */}
+              <i className="fa-solid fa-caret-down fa-3x menu_Icon"></i>
             </div>
           </div>
           <div
@@ -134,7 +135,7 @@ function Header() {
               />
             </div>
           </div>
-          <div className="log_in_section__left_side disable">
+          <div className="log_in_section__left_side">
             <Link to={"/"} className="log_in_section__left_side__logo__box">
               <img
                 src={logo}
