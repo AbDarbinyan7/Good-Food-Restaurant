@@ -16,6 +16,7 @@
 
   &__box__mobile_cart_icon {
     display: none;
+    position: relative;
     justify-content: center;
     align-items: center;
     padding: 5px;
@@ -83,8 +84,10 @@
     padding: 0 10px;
 
     @include media(mobile) {
-      gap: 5px;
-      max-width: 61px !important;
+      gap: 10px;
+      padding: 0;
+
+      // max-width: 61px !important;
     }
 
     &__list_icon {

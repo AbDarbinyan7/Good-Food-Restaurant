@@ -6,18 +6,13 @@ code {
 body {
   width: 100%;
   height: 100vh;
-  /* background: linear-gradient(0deg, rgba(80, 5, 49, 0.2), rgba(255, 0, 0, 0.2)),
-    url("../src/Assets/img/restaurant.webp"); */
   background: linear-gradient(0deg, rgba(80, 5, 49, 0.2), rgba(255, 0, 0, 0.2)),
     url("https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=pexels-ella-olsson-1640777.jpg&fm=jpg");
-
   background-color: rgba(0, 0, 0, 0.329);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  /* overflow-y: scroll; */
   font-family: "Raleway", sans-serif;
-
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -59,7 +54,10 @@ a:hover {
 }
 
 @media (max-width: 599px) {
+  body {
+    background: rgba(228, 228, 228, 0.933);
+  }
   .main__container {
-    margin-top: 60px;
+    margin-top: 0;
   }
 }

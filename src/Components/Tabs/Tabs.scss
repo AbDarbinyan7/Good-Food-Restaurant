@@ -13,12 +13,20 @@
     font-size: 18px;
     font-weight: 500;
     color: white;
-    transition: 0.5s;
 
-    @include media(mobile) {
+    @include media(tablet) {
       overflow-y: hidden;
-      overflow-x: scroll;
+      overflow-x: overlay;
       font-size: 16px;
+
+      &::-webkit-scrollbar {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        outline: none;
+      }
     }
 
     .scroll__line {
@@ -40,7 +48,6 @@
       align-items: center;
       font-weight: 400;
       cursor: pointer;
-      transition: 0.5s;
 
       @include media(mobile) {
         padding: 5px 10px;
@@ -81,11 +88,12 @@
   max-width: 1281px;
   margin: 0 auto;
 
-  @media screen and (max-width: 990px) {
-    & {
-      max-width: 850px !important;
-      margin: 0 auto;
-    }
+  @include media(tablet) {
+    max-width: 850px;
+  }
+
+  @include media(mobile) {
+    max-width: 350px;
   }
 }
 

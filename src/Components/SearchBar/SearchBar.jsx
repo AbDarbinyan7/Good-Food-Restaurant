@@ -11,24 +11,37 @@ import {
   ListViewTypeContext,
   LIST_VIEW_TYPES,
   CartLocationContext,
+  CartContext,
 } from "Routes/AppRoutes";
 
 import gridIcon from "Assets/img/gridIcon.svg";
 import ColumnIcon from "Components/Icons/ColumnIcon";
 import "Components/Home/Home.scss";
 import { Link } from "react-router-dom";
+import { onProductCount } from "Components/Header/Header";
 
 function SearchBar({ value, onSearch }) {
   const { mealsContext, setMealsContext } = useContext(MealsContext);
   const { listViewType, setListViewType } = useContext(ListViewTypeContext);
+  const { cartContext, setCartContext } = useContext(CartContext);
   const [isSearchOpened, setIsSearchOpened] = useState(false);
   const { cartLocation, setCartLocation } = useContext(CartLocationContext);
 
   const mobileCarRef = useRef(null);
 
+  function onProductCount() {
+    let counter = 0;
+    cartContext.map((product) => {
+      counter = product.quantityInCart + counter;
+    });
+    return counter;
+  }
+
   useEffect(() => {
     if (mobileCarRef) {
-      setCartLocation(mobileCarRef);
+      if (window.innerWidth <= 390) {
+        setCartLocation(mobileCarRef);
+      }
     }
   }, [mobileCarRef]);
 
@@ -49,9 +62,12 @@ function SearchBar({ value, onSearch }) {
           </label>
           <Link
             to="/cart"
-            ref={  mobileCarRef}
+            ref={mobileCarRef}
             className="search_bar__box__mobile_cart_icon"
           >
+            <div className="log_in_section__right_side__cart__btn__cart_quantity">
+              <p>{onProductCount()}</p>
+            </div>
             <i className="fa-solid fa-cart-shopping"></i>
           </Link>
         </div>

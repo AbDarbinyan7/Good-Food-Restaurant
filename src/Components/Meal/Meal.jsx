@@ -38,11 +38,9 @@ function MealItem({ selectedPath, meal = {} }) {
     e.preventDefault();
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
-    console.log("asada");
   }
 
   function setParams(meal) {
-    console.log("yaaaayy");
     let newCartList = [];
 
     const isProductExist = cartContext.find((product) => {

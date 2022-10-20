@@ -20,6 +20,9 @@ const LINKS = [
   { label: "Cooperation", src: "#" },
 ];
 
+
+ 
+
 function Header() {
   const { cartContext, setCartContext } = useContext(CartContext);
   const { cartLocation, setCartLocation } = useContext(CartLocationContext);
@@ -36,16 +39,19 @@ function Header() {
   })
 
   function scrollFunction() {
-    if (window.pageYOffset > 10) {  
-      if (!smallHeader) {
-        setSmallHeader(true);
+    if (window.innerWidth > 390) {
+      if (window.pageYOffset > 10) {
+        if (!smallHeader) {
+          setSmallHeader(true);
+        }
+        return;
       }
-      return;
-    }
 
-    if (smallHeader ) {
-      setSmallHeader(false);
+      if (smallHeader) {
+        setSmallHeader(false);
+      }
     }
+  
   };
 
   
@@ -55,28 +61,39 @@ function Header() {
     }
   }, [cartRef]);
 
-
+function onProductCount() {
+  let counter = 0;
+  cartContext.map((product) => {
+    counter = product.quantityInCart + counter;
+  });
+  return counter;
+}
  
 
-  function onProductCount() {
-    let counter = 0
-    cartContext.map((product)=>{
-      counter = product.quantityInCart + counter;
-    })
-    return  counter
-  }
 
   function onOpenMenuModal() {
     const body = document.querySelector("body");
+    const mainContainer = document.querySelector(".main__container");
+    const mainLogo = document.querySelector(".log_in_section__mobile__logo__box__wraper");
+    const wraper = document.querySelector(".log_in_section__wraper");
 
     if (!menuModal) {
       body.style.overflowY = "hidden";
-      setMenuModal(true);
+      body.style.height = "100%";
+      body.style.position = "fixed";
+      // mainContainer.style.webkitBackdropFilter = "blur(4px)";
+      // mainLogo.style.filter = "blur(60px)";
+      // wraper.style.background = "#222831b3";
+      setMenuModal(true); 
     }else{
       setMenuModal(false)
       body.style.overflowY = "scroll";
+      body.style.height = "100vh";
+      body.style.position = "relative";
+      // mainContainer.style.webkitBackdropFilter = "blur(0px)";
+      // mainLogo.style.filter = "blur(0)";
+      // wraper.style.background = "#222831";
     }
-    // setMenuModal(prevVal =>!prevVal)
   }
 
   return (
@@ -90,6 +107,7 @@ function Header() {
         <div className="log_in_section  container">
           <div className="log_in_section__mobile">
             <Link to={"/"} className="log_in_section__mobile__logo__box ">
+              <div className="log_in_section__mobile__logo__box__wraper"></div>
               <img
                 src={logo}
                 className="log_in_section__left_side__logo__box__logo"
@@ -109,18 +127,17 @@ function Header() {
           <div
             className={cx({
               log_in_section__mobile__modal: true,
-              container: true,
               active_modal: menuModal,
             })}
           >
-            <div className="log_in_section__mobile__modal__links">
+            <div className="log_in_section__mobile__modal__links container">
               {LINKS.map((link, i) => (
                 <a key={i} href={link.src}>
                   {link.label}
                 </a>
               ))}
             </div>
-            <div className="log_in_section__mobile__modal__buttons">
+            <div className="log_in_section__mobile__modal__buttons  container">
               <div className="conteudo">
                 <Button
                   text="Log In"
