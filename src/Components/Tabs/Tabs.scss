@@ -49,13 +49,9 @@
       font-weight: 400;
       cursor: pointer;
 
-      @include media(mobile) {
-        padding: 5px 10px;
-      }
-
-      &__title {
-        transition: 0.1s;
-      }
+      // &__title {
+      //   transition: 0.1s;
+      // }
 
       &:hover {
         .tab__title {
@@ -64,12 +60,30 @@
       }
 
       &.active {
-        transform: scale(1.1);
-        color: black;
+        // transform: scale(1.1);
+        // color: black;
 
         &:hover {
           .tab__title {
             transform: scale(1);
+          }
+        }
+      }
+
+      @include media(mobile) {
+        padding: 5px 10px;
+        &:hover {
+          .tab__title {
+            transform: none;
+          }
+        }
+        &.active {
+          transform: none;
+
+          &:hover {
+            .tab__title {
+              transform: none;
+            }
           }
         }
       }

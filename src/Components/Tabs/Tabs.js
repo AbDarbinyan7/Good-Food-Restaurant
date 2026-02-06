@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import { TabContext, MealsContext } from "Routes/AppRoutes";
-import { generateUniqueId} from "Helper/index"
+import { generateUniqueId} from "Routes/Helper/index"
 import { CATEGORIES } from "Routes/RoutePaths/RoutePaths"
 
 import 'Components/Tabs/Tabs.scss'; 
@@ -20,7 +20,7 @@ import  Home from "Components/Home/Home";
 function Tabs() {
   const {tabContext, setTabContext } = useContext(TabContext)
   const { mealsContext, setMealsContext } = useContext(MealsContext);
-
+  
   const scrollLineRef = useRef(null);
   const tabsRef = useRef([]);
 

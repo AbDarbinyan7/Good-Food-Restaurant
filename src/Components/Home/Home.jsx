@@ -15,7 +15,7 @@ import {
 
 import TriangleLoader from "Components/TriangleLoader/TriangleLoader";
 import CustumCarousel from "Components/CustumCarousel/CustumCarousel";
-import { getOrSetLocalStorageItem } from "Helper";
+import { getOrSetLocalStorageItem } from "Routes/Helper";
 
 function Home({ selectedPath, loading }) {
   const { mealsContext, setMealsContext } = useContext(MealsContext);
@@ -34,12 +34,6 @@ function Home({ selectedPath, loading }) {
   useEffect(() => {
     setViewedMealsInLoc(getOrSetLocalStorageItem("viewedMeals"));
   }, []);
-
-  // useEffect(() => {
-  //   if (viewedMealsInLoc) {
-  //     console.log(viewedMealsInLoc);
-  //   }
-  // }, [viewedMealsInLoc]);
 
   function onSearch(value) {
     if (mealsContext.length) {

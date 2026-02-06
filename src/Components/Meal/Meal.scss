@@ -17,12 +17,12 @@
   background: hsla(0, 0%, 100%, 0.63);
   padding: 10px 20px;
   margin: 20px auto;
-  border-radius: 30px;
+  border-radius: 10px;
   min-height: 300px;
 
   @include media(mobile) {
     background: #eeeeee;
-    box-shadow: 20px 20px 60px #cacaca;
+    box-shadow: 1px 0px 20px 0px #cacaca;
   }
 
   .__wraper {

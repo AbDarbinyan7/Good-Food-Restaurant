@@ -1,3 +1,10 @@
+@import "Assets/SCSS/Media.scss";
+
 .footer {
   background: rgba(53, 53, 53, 0.6);
+  margin-top: 50px;
+
+  @include media(mobile) {
+    background: #222831;
+  }
 }

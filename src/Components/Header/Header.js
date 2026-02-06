@@ -104,6 +104,7 @@ function onProductCount() {
           smallHeader: smallHeader,
         })}
       >
+        <div></div>
         <div className="log_in_section  container">
           <div className="log_in_section__mobile">
             <Link to={"/"} className="log_in_section__mobile__logo__box ">

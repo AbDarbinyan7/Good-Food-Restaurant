@@ -55,7 +55,7 @@ a:hover {
 
 @media (max-width: 599px) {
   body {
-    background: rgba(228, 228, 228, 0.933);
+    background: #d9d9d9;
   }
   .main__container {
     margin-top: 0;

@@ -1,5 +1,7 @@
 import {Routes,Route} from 'react-router-dom';
 import { createContext, useState, useContext} from 'react';
+import { Provider } from "react-redux";
+// import store from "./store";
 
 import Tabs from 'Components/Tabs/Tabs'; 
 import ErrorPage from 'Components/Pages/ErrorPage/ErrorPage';
@@ -50,46 +52,51 @@ function AppRoutes (){
 	const [cartLocation, setCartLocation] = useState(CartLocationContext);
 	const [viewedMeals, setViewedMeals] = useState([]);
 
+  // const count = useSelector(selectCount);
+  // const dispatch = useDispatch();
+
 return (
   <>
-    <TabContext.Provider value={{ tabContext, setTabContext }}>
-      <MealsContext.Provider value={{ mealsContext, setMealsContext }}>
-        <CartContext.Provider value={{ cartContext, setCartContext }}>
-          <ModalContext.Provider value={{ modalContext, setModalContext }}>
-            <ListViewTypeContext.Provider
-              value={{ listViewType, setListViewType }}
-            >
-              <CartLocationContext.Provider
-                value={{ cartLocation, setCartLocation }}
+    {/* <Provider store={store}> */}
+      <TabContext.Provider value={{ tabContext, setTabContext }}>
+        <MealsContext.Provider value={{ mealsContext, setMealsContext }}>
+          <CartContext.Provider value={{ cartContext, setCartContext }}>
+            <ModalContext.Provider value={{ modalContext, setModalContext }}>
+              <ListViewTypeContext.Provider
+                value={{ listViewType, setListViewType }}
               >
-                <ViewedMEalsContext.Provider
-                  value={{ viewedMeals, setViewedMeals }}
+                <CartLocationContext.Provider
+                  value={{ cartLocation, setCartLocation }}
                 >
-                  <Header />
-                  <div className="main__container">
-                    <Routes>
-                      <Route path={HOME} element={<Tabs />} />
-                      <Route path={CATEGORIES} element={<Tabs />} />
-                      <Route
-                        path={CATEGORIES + "/:selectedPath"}
-                        element={<Tabs />}
-                      />
-                      <Route
-                        path={CATEGORIES + "/:selectedPath" + "/:mealPath"}
-                        element={<SingleCategories />}
-                      />
-                      <Route path={CART} element={<CartPage />} />
-                      <Route path={NOTFOUND} element={<ErrorPage />} />
-                    </Routes>
-                  </div>
-                  <Footer />
-                </ViewedMEalsContext.Provider>
-              </CartLocationContext.Provider>
-            </ListViewTypeContext.Provider>
-          </ModalContext.Provider>
-        </CartContext.Provider>
-      </MealsContext.Provider>
-    </TabContext.Provider>
+                  <ViewedMEalsContext.Provider
+                    value={{ viewedMeals, setViewedMeals }}
+                  >
+                    <Header />
+                    <div className="main__container">
+                      <Routes>
+                        <Route path={HOME} element={<Tabs />} />
+                        <Route path={CATEGORIES} element={<Tabs />} />
+                        <Route
+                          path={CATEGORIES + "/:selectedPath"}
+                          element={<Tabs />}
+                        />
+                        <Route
+                          path={CATEGORIES + "/:selectedPath" + "/:mealPath"}
+                          element={<SingleCategories />}
+                        />
+                        <Route path={CART} element={<CartPage />} />
+                        <Route path={NOTFOUND} element={<ErrorPage />} />
+                      </Routes>
+                    </div>
+                    <Footer />
+                  </ViewedMEalsContext.Provider>
+                </CartLocationContext.Provider>
+              </ListViewTypeContext.Provider>
+            </ModalContext.Provider>
+          </CartContext.Provider>
+        </MealsContext.Provider>
+      </TabContext.Provider>
+    {/* </Provider> */}
   </>
 );
 }

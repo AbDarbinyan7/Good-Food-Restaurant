@@ -1,10 +1,17 @@
 @import "Assets/SCSS/Variable.scss";
+@import "Assets/SCSS/Media.scss";
 
 .cart__section {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 5px;
+  gap: 20px;
   padding: 20px 20px 100px;
+
+  @include media(mobile) {
+    grid-template-columns: 1fr;
+    padding: 20px 10px;
+    gap: 10px;
+  }
 
   &__left-side {
     padding: 10px;
@@ -14,11 +21,20 @@
     flex-direction: column;
     gap: 10px;
 
+    @include media(mobile) {
+      background: #d9d9d9;
+      box-shadow: 20px 20px 60px #b8b8b8, -20px -20px 60px #c7c7c7;
+    }
+
     &-title__basket {
       color: white;
       font-size: 30px;
       font-weight: 300;
       margin-left: 10px;
+
+      @include media(mobile) {
+        color: #2a2a2a;
+      }
     }
 
     &__cart_meal {
@@ -31,11 +47,24 @@
       border-radius: 10px;
       color: white;
 
+      @include media(mobile) {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        background: #222831;
+        box-shadow: 0px 0px 8px 0px #979797;
+      }
+
       &__img-title {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 10px;
+
+        @include media(mobile) {
+          justify-content: start;
+          align-items: flex-start;
+        }
 
         &__title {
           font-size: 16px;
@@ -45,12 +74,23 @@
           text-overflow: ellipsis;
           white-space: nowrap;
           max-width: 138px;
+
+          @include media(mobile) {
+            -webkit-line-clamp: 3;
+            max-width: 200px;
+          }
         }
 
         &__img {
           height: 50px;
           max-width: 50px;
           min-width: 50px;
+
+          @include media(mobile) {
+            height: 70px;
+            max-width: 70px;
+            min-width: 70px;
+          }
 
           img {
             width: 100%;
@@ -65,6 +105,10 @@
         align-items: center;
         gap: 20px;
         color: white;
+
+        @include media(mobile) {
+          justify-content: start;
+        }
 
         &__right-side {
           display: flex;
