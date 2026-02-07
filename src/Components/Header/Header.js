@@ -10,8 +10,7 @@ import { CartContext, CartLocationContext } from "Routes/AppRoutes";
 import { useRef } from "react";
 import { useEffect } from "react";
 import ScrollTop from "Components/ScrollTop/ScrollTop";
-import  Button  from "Components/Button/Button";
-import { css } from "@emotion/react";
+import Button from "Components/Button/Button";
 
 const LINKS = [
   { label: "About us", src: "#" },
@@ -36,7 +35,7 @@ function Header() {
     return () =>{
      window.removeEventListener("scroll", scrollFunction);
     }
-  })
+  }, [])
 
   function scrollFunction() {
     if (window.innerWidth > 390) {

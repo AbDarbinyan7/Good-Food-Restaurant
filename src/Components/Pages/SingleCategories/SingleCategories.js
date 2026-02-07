@@ -1,14 +1,12 @@
-import { useEffect, useState,useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router";
 import * as axios from "axios";
-import bootstrap from "bootstrap";
-import { Link } from "react-router-dom";
-import { Navbar, Button, Nav, Carousel} from "react-bootstrap";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import 'Components/Pages/SingleCategories/SingleCategories.scss';
-import { getOrSetLocalStorageItem } from "Routes/Helper/index.js";
+import { getOrSetLocalStorageItem } from "Helper/index.js";
 import {CATEGORIES} from "Routes/RoutePaths/RoutePaths"
 import { MealsContext, TabContext, ViewedMEalsContext } from "Routes/AppRoutes";
 
@@ -20,7 +18,6 @@ function SingleCategories() {
   const navigate = useNavigate();
   const { mealPath } = useParams()
 
-  const [meals, setMeals] = useState(null);
   const [meal, setMeal] = useState(null)
   
   useEffect(() => {
@@ -66,7 +63,7 @@ function SingleCategories() {
     axios
       .get("https://www.themealdb.com/api/json/v1/1/filter.php?c=" + tabName)
       .then((res) => {
-        setMeals(res.data.meals);
+        setMealsContext(res.data.meals);
       });
   }
 

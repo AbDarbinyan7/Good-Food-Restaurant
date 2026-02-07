@@ -1,6 +1,5 @@
 import "Components/ScrollTop/ScrollTop.scss";
-import { useEffect,useState } from "react";
-import context from "react-bootstrap/esm/AccordionContext";
+import { useEffect, useState } from "react";
 import cx from "classnames";
 
 
@@ -14,7 +13,7 @@ const ScrollTop = () => {
     return () =>{
      window.removeEventListener("scroll", scrollFunction);
     }
-  })
+  }, [])
 
   function scrollFunction() {
      if (window.pageYOffset > 100) {  

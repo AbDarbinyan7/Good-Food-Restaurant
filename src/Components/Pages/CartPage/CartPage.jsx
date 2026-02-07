@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useContext, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 
 import {
   CartContext,
@@ -21,9 +21,8 @@ const CartPage = () => {
   useEffect(() => {
     if (!cartContext.length) {
       navigatePage(HOME);
-    } else if (cartContext.length) {
     }
-  }, [cartContext]);
+  }, [cartContext, navigatePage]);
 
   function productMinus(meal, isMinus = false) {
     let newCartList = [];

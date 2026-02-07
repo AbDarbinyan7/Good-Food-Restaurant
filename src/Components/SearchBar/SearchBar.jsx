@@ -3,8 +3,6 @@ import cx from "classnames";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 import {
   MealsContext,
@@ -18,13 +16,11 @@ import gridIcon from "Assets/img/gridIcon.svg";
 import ColumnIcon from "Components/Icons/ColumnIcon";
 import "Components/Home/Home.scss";
 import { Link } from "react-router-dom";
-import { onProductCount } from "Components/Header/Header";
 
 function SearchBar({ value, onSearch }) {
   const { mealsContext, setMealsContext } = useContext(MealsContext);
   const { listViewType, setListViewType } = useContext(ListViewTypeContext);
   const { cartContext, setCartContext } = useContext(CartContext);
-  const [isSearchOpened, setIsSearchOpened] = useState(false);
   const { cartLocation, setCartLocation } = useContext(CartLocationContext);
 
   const mobileCarRef = useRef(null);

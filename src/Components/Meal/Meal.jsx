@@ -97,7 +97,6 @@ function MealItem({ selectedPath, meal = {} }) {
       mealDiv.style.left = realMealLoc.left + "px";
       mealDiv.style.top = realMealLoc.top + "px";
       mealDiv.style.transform = "scale(0.2)";
-      console.log(mealDiv);
 
       setTimeout(() => {
         mealDiv.style.left = cartLoc.left - 70 + "px";

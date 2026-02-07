@@ -1,13 +1,12 @@
 import React, { useRef, useEffect, useState, useContext, Fragment } from "react";
 import { useParams  } from "react-router";
-import { Link } from "react-router-dom";  
 import { useNavigate } from "react-router";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import { TabContext, MealsContext } from "Routes/AppRoutes";
-import { generateUniqueId} from "Routes/Helper/index"
+import { generateUniqueId} from "Helper/index"
 import { CATEGORIES } from "Routes/RoutePaths/RoutePaths"
 
 import 'Components/Tabs/Tabs.scss'; 
@@ -33,7 +32,6 @@ function Tabs() {
   const [defaultTabIndex, setDefaultTabIndex] = useState(0);
   const [activeDiv, SetActiveDiv] = useState(null);
   const [index, setIndex] = useState(null);
-
   const [loader, setLoader] = useState(true);
 
 
@@ -44,7 +42,7 @@ function Tabs() {
       return () => {
         window.removeEventListener("resize", onChangeStyles);
       };
-    });
+    }, []);
 
     
 

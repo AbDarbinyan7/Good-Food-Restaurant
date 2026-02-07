@@ -1,7 +1,4 @@
 import "Components/Button/Button.scss";
-import cx from "classnames";
-
-import { React } from "react";
 
 function Button({ bgColor, text, className, onClick }) {
   return (

@@ -11,11 +11,11 @@ import {
   ListViewTypeContext,
   LIST_VIEW_TYPES,
   ViewedMEalsContext,
-} from "Routes/AppRoutes";
+} from "Routes/AppRoutes.js";
 
 import TriangleLoader from "Components/TriangleLoader/TriangleLoader";
 import CustumCarousel from "Components/CustumCarousel/CustumCarousel";
-import { getOrSetLocalStorageItem } from "Routes/Helper";
+import { getOrSetLocalStorageItem } from "Helper/index.js";
 
 function Home({ selectedPath, loading }) {
   const { mealsContext, setMealsContext } = useContext(MealsContext);
